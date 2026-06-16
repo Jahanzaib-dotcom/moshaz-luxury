@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MOSHAZ Beauty Salon — Where Beauty Meets Perfection | Rawalpindi & Islamabad</title>
+<meta name="description" content="MOSHAZ Beauty Salon — premium bridal makeup, hair styling, spa and beauty services in Rawalpindi & Islamabad. 21+ years of artistry. Ladies-only. Two prime locations." />
+
+<!-- Fonts: Italiana (accent display) · Cormorant Garamond (headlines) · Jost (body/UI) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Italiana&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          noir:    '#16110E',
+          espresso:'#241A14',
+          ivory:   '#FAF4EC',
+          cream:   '#F3E9DD',
+          rose:    '#C08C72',   /* rose gold */
+          roselt:  '#E4C2AC',
+          rosedk:  '#A06B52',
+          champ:   '#E9D5C0',
+        },
+        fontFamily: {
+          accent:  ['Italiana', 'serif'],
+          display: ['"Cormorant Garamond"', 'serif'],
+          body:    ['Jost', 'sans-serif'],
+        },
+      }
+    }
+  }
+</script>
+
+<style>
+  :root{
+    --rose-grad: linear-gradient(115deg,#E7C7AE 0%,#C08C72 42%,#A06B52 70%,#D9AE94 100%);
+  }
+  html,body{background:#16110E;}
+  ::selection{background:#C08C72;color:#16110E;}
+
+  /* ---------- Scrollbar ---------- */
+  ::-webkit-scrollbar{width:10px;}
+  ::-webkit-scrollbar-track{background:#16110E;}
+  ::-webkit-scrollbar-thumb{background:linear-gradient(#C08C72,#A06B52);border-radius:10px;}
+
+  /* ---------- Gold text & rules ---------- */
+  .text-gold{
+    background:var(--rose-grad);
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent;
+  }
+  .rule-gold{height:1px;background:linear-gradient(90deg,transparent,#C08C72,transparent);}
+
+  /* elegant editorial divider: thin rule + diamond marker */
+  .divider{display:flex;align-items:center;justify-content:center;gap:14px;}
+  .divider .line{height:1px;width:60px;background:linear-gradient(90deg,transparent,#C08C72);}
+  .divider .line.r{background:linear-gradient(90deg,#C08C72,transparent);}
+  .divider .dot{width:7px;height:7px;transform:rotate(45deg);background:var(--rose-grad);}
+
+  /* ---------- Glassmorphism ---------- */
+  .glass{
+    background:rgba(250,244,236,0.06);
+    backdrop-filter:blur(14px) saturate(140%);
+    -webkit-backdrop-filter:blur(14px) saturate(140%);
+    border:1px solid rgba(228,194,172,0.16);
+  }
+  .glass-light{
+    background:rgba(250,244,236,0.55);
+    backdrop-filter:blur(16px) saturate(140%);
+    -webkit-backdrop-filter:blur(16px) saturate(140%);
+    border:1px solid rgba(192,140,114,0.25);
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn-gold{
+    position:relative;overflow:hidden;background:var(--rose-grad);color:#16110E;
+    letter-spacing:.18em;font-weight:500;transition:transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s;
+    box-shadow:0 10px 30px -10px rgba(192,140,114,.6);
+  }
+  .btn-gold:hover{transform:translateY(-3px);box-shadow:0 18px 42px -12px rgba(192,140,114,.75);}
+  .btn-gold::after{
+    content:"";position:absolute;top:0;left:-120%;width:60%;height:100%;
+    background:linear-gradient(120deg,transparent,rgba(255,255,255,.55),transparent);
+    transform:skewX(-20deg);transition:left .7s ease;
+  }
+  .btn-gold:hover::after{left:130%;}
+  .btn-ghost{
+    border:1px solid rgba(228,194,172,.5);color:#FAF4EC;letter-spacing:.18em;
+    transition:all .4s ease;
+  }
+  .btn-ghost:hover{background:rgba(228,194,172,.1);border-color:#E4C2AC;transform:translateY(-3px);}
+
+  /* ---------- Reveal on scroll ---------- */
+  .reveal{opacity:0;transform:translateY(38px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1);}
+  .reveal.in{opacity:1;transform:none;}
+  .reveal.d1{transition-delay:.12s;} .reveal.d2{transition-delay:.24s;}
+  .reveal.d3{transition-delay:.36s;} .reveal.d4{transition-delay:.48s;}
+
+  /* ---------- Hero ---------- */
+  .hero-bg{transform:scale(1.12);}
+  @keyframes heroZoom{from{transform:scale(1.18)}to{transform:scale(1.04)}}
+  .hero-anim{animation:heroZoom 14s ease-out forwards;}
+  @keyframes lineRise{from{opacity:0;transform:translateY(110%)}to{opacity:1;transform:translateY(0)}}
+  .line-mask{overflow:hidden;display:block;}
+  .line-mask span{display:block;opacity:0;animation:lineRise 1.1s cubic-bezier(.2,.8,.2,1) forwards;}
+
+  /* ---------- Service card ---------- */
+  .svc{position:relative;overflow:hidden;}
+  .svc img{transition:transform 1.1s cubic-bezier(.2,.8,.2,1),filter .6s;}
+  .svc:hover img{transform:scale(1.1);filter:brightness(.7);}
+  .svc .veil{background:linear-gradient(to top,rgba(22,17,14,.92) 6%,rgba(22,17,14,.35) 55%,transparent 100%);}
+  .svc .reveal-up{transform:translateY(14px);opacity:.0;transition:all .5s ease;}
+  .svc:hover .reveal-up{transform:translateY(0);opacity:1;}
+
+  /* ---------- Before / After slider ---------- */
+  .ba{position:relative;overflow:hidden;cursor:ew-resize;user-select:none;}
+  .ba .after{position:absolute;inset:0;width:50%;overflow:hidden;}
+  .ba img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;}
+  .ba .after img{position:absolute;top:0;left:0;height:100%;}
+  .ba .handle{position:absolute;top:0;bottom:0;left:50%;width:2px;background:var(--rose-grad);transform:translateX(-1px);}
+  .ba .knob{position:absolute;top:50%;left:50%;width:48px;height:48px;border-radius:999px;transform:translate(-50%,-50%);
+    background:rgba(22,17,14,.5);border:1.5px solid #E4C2AC;display:grid;place-items:center;backdrop-filter:blur(6px);}
+  .ba .tag{position:absolute;bottom:18px;padding:6px 14px;font-size:11px;letter-spacing:.22em;border-radius:2px;}
+
+  /* ---------- Image load polish (shimmer + fade-in) ---------- */
+  @keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+  .ph{position:relative;}
+  .ph::before{content:"";position:absolute;inset:0;z-index:0;
+    background:linear-gradient(100deg,#241A14 20%,#3a2a20 40%,#241A14 60%);
+    background-size:200% 100%;animation:shimmer 1.6s infinite;}
+  .ph.ready::before{opacity:0;transition:opacity .6s;}
+  img[data-fallback]{position:relative;z-index:1;opacity:0;transition:opacity .9s ease;}
+  img[data-fallback].loaded{opacity:1;}
+
+  /* ---------- Gallery ---------- */
+  .gitem{overflow:hidden;position:relative;}
+  .gitem img{transition:transform 1s cubic-bezier(.2,.8,.2,1);width:100%;height:100%;object-fit:cover;}
+  .gitem:hover img{transform:scale(1.12);}
+  .gitem::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(22,17,14,.5),transparent 60%);opacity:0;transition:opacity .5s;}
+  .gitem:hover::after{opacity:1;}
+
+  /* ---------- Marquee ---------- */
+  @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .marquee{display:flex;width:max-content;animation:marquee 28s linear infinite;}
+
+  /* ---------- Misc ---------- */
+  .eyebrow{font-family:'Jost',sans-serif;letter-spacing:.4em;font-size:11px;text-transform:uppercase;}
+  .grain{position:fixed;inset:0;pointer-events:none;z-index:60;opacity:.05;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+  .nav-link{position:relative;}
+  .nav-link::after{content:"";position:absolute;left:0;bottom:-6px;height:1px;width:0;background:var(--rose-grad);transition:width .4s ease;}
+  .nav-link:hover::after{width:100%;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none!important;transition:none!important;}
+    .reveal{opacity:1;transform:none;}
+  }
+</style>
+</head>
+
+<body class="bg-noir text-ivory font-body antialiased overflow-x-hidden">
+<div class="grain"></div>
+
+<!-- ===================== NAV ===================== -->
+<header id="nav" class="fixed top-0 inset-x-0 z-50 transition-all duration-500">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 flex items-center justify-between py-5" id="navInner">
+    <a href="#home" class="flex flex-col leading-none">
+      <span class="font-accent text-2xl sm:text-3xl tracking-[.3em] text-ivory pl-1">MOSHAZ</span>
+      <span class="eyebrow text-rose mt-1 text-[9px] sm:text-[10px] tracking-[.5em]">Beauty · Est. 2004</span>
+    </a>
+
+    <nav class="hidden lg:flex items-center gap-9 text-[13px] tracking-[.16em] uppercase text-ivory/80">
+      <a href="#about"    class="nav-link hover:text-ivory transition">About</a>
+      <a href="#services" class="nav-link hover:text-ivory transition">Services</a>
+      <a href="#bridal"   class="nav-link hover:text-ivory transition">Bridal</a>
+      <a href="#gallery"  class="nav-link hover:text-ivory transition">Gallery</a>
+      <a href="#locations"class="nav-link hover:text-ivory transition">Locations</a>
+    </nav>
+
+    <a href="#book" class="hidden lg:inline-flex btn-gold rounded-full px-7 py-3 text-[12px] uppercase">Book Appointment</a>
+
+    <button id="burger" aria-label="Open menu" class="lg:hidden w-11 h-11 grid place-items-center glass rounded-full">
+      <span class="block w-5 h-px bg-ivory relative before:content-[''] before:absolute before:-top-1.5 before:left-0 before:w-5 before:h-px before:bg-ivory after:content-[''] after:absolute after:top-1.5 after:left-0 after:w-5 after:h-px after:bg-ivory"></span>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile menu -->
+<div id="mobileMenu" class="fixed inset-0 z-[55] translate-x-full transition-transform duration-500 lg:hidden">
+  <div class="absolute inset-0 bg-noir/95 backdrop-blur-xl"></div>
+  <div class="relative h-full flex flex-col items-center justify-center gap-8 text-center">
+    <button id="closeMenu" aria-label="Close menu" class="absolute top-6 right-6 w-11 h-11 grid place-items-center glass rounded-full text-2xl text-ivory">&times;</button>
+    <span class="font-accent text-4xl tracking-[.3em]">MOSHAZ</span>
+    <div class="divider"><span class="line"></span><span class="dot"></span><span class="line r"></span></div>
+    <nav class="flex flex-col gap-6 text-2xl font-display">
+      <a href="#about"    class="moblink">About</a>
+      <a href="#services" class="moblink">Services</a>
+      <a href="#bridal"   class="moblink">Bridal</a>
+      <a href="#gallery"  class="moblink">Gallery</a>
+      <a href="#locations"class="moblink">Locations</a>
+    </nav>
+    <a href="#book" class="moblink btn-gold rounded-full px-9 py-4 text-sm uppercase">Book Appointment</a>
+  </div>
+</div>
+
+<!-- ===================== HERO ===================== -->
+<section id="home" class="relative min-h-screen flex items-center overflow-hidden">
+  <div class="absolute inset-0">
+    <img class="hero-bg hero-anim w-full h-full object-cover" alt="Moshaz bridal beauty"
+         src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?q=80&w=2000&auto=format&fit=crop"
+         data-fallback="grad" />
+    <div class="absolute inset-0 bg-gradient-to-r from-noir via-noir/70 to-noir/30"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-noir via-transparent to-noir/40"></div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 w-full pt-28">
+    <div class="max-w-3xl">
+      <p class="eyebrow text-rose mb-6 line-mask"><span style="animation-delay:.1s">Premium Beauty Salon · Rawalpindi & Islamabad</span></p>
+      <h1 class="font-display font-light text-[3.1rem] leading-[1.02] sm:text-7xl lg:text-8xl text-ivory">
+        <span class="line-mask"><span style="animation-delay:.35s">Where Beauty</span></span>
+        <span class="line-mask"><span class="text-gold italic" style="animation-delay:.6s">Meets Perfection</span></span>
+      </h1>
+      <p class="mt-7 max-w-xl text-ivory/75 text-base sm:text-lg font-light leading-relaxed line-mask">
+        <span style="animation-delay:.9s">Premium bridal makeup, hair styling, spa & beauty services — crafted by internationally trained artists for over two decades.</span>
+      </p>
+      <div class="mt-10 flex flex-wrap gap-4 line-mask">
+        <span style="animation-delay:1.1s" class="flex flex-wrap gap-4">
+          <a href="#book" class="btn-gold rounded-full px-9 py-4 text-[12px] uppercase">Book Appointment</a>
+          <a href="#services" class="btn-ghost rounded-full px-9 py-4 text-[12px] uppercase">Explore Services</a>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- scroll cue -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-ivory/50">
+    <span class="eyebrow text-[9px]">Scroll</span>
+    <span class="w-px h-10 bg-gradient-to-b from-rose to-transparent animate-pulse"></span>
+  </div>
+</section>
+
+<!-- ===================== STATS ===================== -->
+<section class="relative bg-espresso border-y border-rose/15">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 py-16 grid grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-6">
+    <div class="text-center reveal">
+      <div class="font-display text-5xl sm:text-6xl text-gold"><span class="count" data-to="21">0</span>+</div>
+      <p class="eyebrow text-ivory/60 mt-3">Years of Artistry</p>
+    </div>
+    <div class="text-center reveal d1">
+      <div class="font-display text-5xl sm:text-6xl text-gold"><span class="count" data-to="10000" data-suffix="">0</span>+</div>
+      <p class="eyebrow text-ivory/60 mt-3">Happy Clients</p>
+    </div>
+    <div class="text-center reveal d2">
+      <div class="font-display text-5xl sm:text-6xl text-gold"><span class="count" data-to="2">0</span></div>
+      <p class="eyebrow text-ivory/60 mt-3">Prime Locations</p>
+    </div>
+    <div class="text-center reveal d3">
+      <div class="font-display text-5xl sm:text-6xl text-gold"><span class="count" data-to="5">0</span>★</div>
+      <p class="eyebrow text-ivory/60 mt-3">Top Rated Studio</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ABOUT ===================== -->
+<section id="about" class="relative bg-ivory text-noir overflow-hidden">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 py-24 lg:py-32 grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+    <!-- imagery -->
+    <div class="relative reveal">
+      <div class="overflow-hidden rounded-t-[180px] rounded-b-3xl shadow-2xl">
+        <img class="w-full h-[560px] object-cover" alt="Inside Moshaz salon"
+             src="https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?q=80&w=1400&auto=format&fit=crop" data-fallback="grad"/>
+      </div>
+      <div class="absolute -bottom-8 -left-4 sm:-left-8 w-44 h-56 overflow-hidden rounded-2xl border-4 border-ivory shadow-xl hidden sm:block">
+        <img class="w-full h-full object-cover" alt="Bridal detail"
+             src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?q=80&w=600&auto=format&fit=crop" data-fallback="grad"/>
+      </div>
+      <div class="absolute -top-6 -right-4 glass-light rounded-2xl px-6 py-4 shadow-lg hidden sm:block">
+        <p class="font-display text-3xl text-rosedk leading-none">Since 2004</p>
+        <p class="eyebrow text-noir/50 mt-1 text-[10px]">A legacy of glamour</p>
+      </div>
+    </div>
+
+    <!-- copy -->
+    <div class="reveal d1">
+      <p class="eyebrow text-rosedk mb-5">The Moshaz Story</p>
+      <h2 class="font-display font-light text-4xl sm:text-5xl leading-tight">
+        Two visionaries, one <span class="italic text-rosedk">house of beauty</span>.
+      </h2>
+      <div class="divider my-7 justify-start"><span class="line"></span><span class="dot"></span></div>
+      <p class="text-noir/70 leading-relaxed font-light text-[15px] sm:text-base">
+        Founded in 2004 by <strong class="font-medium text-noir">Shazia & Mona</strong> — internationally trained beauty
+        specialists who refined their craft across France, Singapore and Dubai before bringing world-class glamour home
+        to Pakistan.
+      </p>
+      <p class="text-noir/70 leading-relaxed font-light mt-4 text-[15px] sm:text-base">
+        For more than two decades, Moshaz has been the name brides, professionals and women across Rawalpindi and
+        Islamabad trust for flawless, personalised results. Our artists work as one team — striving to make every visit
+        feel effortless, every result feel like you, perfected.
+      </p>
+
+      <div class="grid grid-cols-3 gap-6 mt-10">
+        <div><p class="font-display text-3xl text-rosedk">Ladies</p><p class="eyebrow text-noir/45 mt-1 text-[9px]">Exclusive Comfort</p></div>
+        <div><p class="font-display text-3xl text-rosedk">Global</p><p class="eyebrow text-noir/45 mt-1 text-[9px]">Trained Artists</p></div>
+        <div><p class="font-display text-3xl text-rosedk">Premium</p><p class="eyebrow text-noir/45 mt-1 text-[9px]">Products Only</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MARQUEE ===================== -->
+<section class="bg-noir py-7 border-y border-rose/15 overflow-hidden">
+  <div class="marquee text-ivory/30 font-display italic text-3xl sm:text-4xl">
+    <span class="flex items-center">
+      Bridal Makeup <span class="dot mx-8 inline-block w-2 h-2 rotate-45 bg-rose"></span>
+      Hair Styling <span class="dot mx-8 inline-block w-2 h-2 rotate-45 bg-rose"></span>
+      HydraFacial <span class="dot mx-8 inline-block w-2 h-2 rotate-45 bg-rose"></span>
+      Keratin <span class="dot mx-8 inline-block w-2 h-2 rotate-45 bg-rose"></span>
+      Spa &amp; Massage <span class="dot mx-8 inline-block w-2 h-2 rotate-45 bg-rose"></span>
+      Nail Art <span class="dot mx-8 inline-block w-2 h-2 rotate-45 bg-rose"></span>
+    </span>
+    <span class="flex items-center" aria-hidden="true">
+      Bridal Makeup <span class="dot mx-8 inline-block w-2 h-2 rotate-45 bg-rose"></span>
+      Hair Styling <span class="dot mx-8 inline-block w-2 h-2 rotate-45 bg-rose"></span>
+      HydraFacial <span class="dot mx-8 inline-block w-2 h-2 rotate-45 bg-rose"></span>
+      Keratin <span class="dot mx-8 inline-block w-2 h-2 rotate-45 bg-rose"></span>
+      Spa &amp; Massage <span class="dot mx-8 inline-block w-2 h-2 rotate-45 bg-rose"></span>
+      Nail Art <span class="dot mx-8 inline-block w-2 h-2 rotate-45 bg-rose"></span>
+    </span>
+  </div>
+</section>
+
+<!-- ===================== SERVICES ===================== -->
+<section id="services" class="relative bg-noir py-24 lg:py-32">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="text-center max-w-2xl mx-auto reveal">
+      <p class="eyebrow text-rose mb-5">What We Offer</p>
+      <h2 class="font-display font-light text-4xl sm:text-5xl lg:text-6xl">A full spectrum of <span class="italic text-gold">luxury beauty</span></h2>
+      <p class="text-ivory/60 font-light mt-5">From the bridal chair to the spa table — every service delivered with precision, premium products and a personal touch.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-16">
+      <!-- card -->
+      <a href="#book" class="svc reveal group rounded-2xl block h-[420px]">
+        <img class="w-full h-full object-cover" alt="Bridal & party makeup" src="https://images.unsplash.com/photo-1457972729786-0411a3b2b626?q=80&w=900&auto=format&fit=crop" data-fallback="grad"/>
+        <div class="veil absolute inset-0"></div>
+        <div class="absolute bottom-0 p-7">
+          <span class="eyebrow text-rose">01</span>
+          <h3 class="font-display text-3xl mt-2">Bridal & Party Makeup</h3>
+          <p class="text-ivory/70 text-sm font-light mt-2 reveal-up">Signature bridal, mehndi, barat & walima looks by senior artists.</p>
+        </div>
+      </a>
+      <a href="#book" class="svc reveal d1 group rounded-2xl block h-[420px]">
+        <img class="w-full h-full object-cover" alt="Hair styling & treatments" src="https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=900&auto=format&fit=crop" data-fallback="grad"/>
+        <div class="veil absolute inset-0"></div>
+        <div class="absolute bottom-0 p-7">
+          <span class="eyebrow text-rose">02</span>
+          <h3 class="font-display text-3xl mt-2">Hair Styling & Keratin</h3>
+          <p class="text-ivory/70 text-sm font-light mt-2 reveal-up">Cuts, colour, blow-dry, keratin & extenso by expert stylists.</p>
+        </div>
+      </a>
+      <a href="#book" class="svc reveal d2 group rounded-2xl block h-[420px]">
+        <img class="w-full h-full object-cover" alt="HydraFacial & facial care" src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=900&auto=format&fit=crop" data-fallback="grad"/>
+        <div class="veil absolute inset-0"></div>
+        <div class="absolute bottom-0 p-7">
+          <span class="eyebrow text-rose">03</span>
+          <h3 class="font-display text-3xl mt-2">HydraFacial & Skincare</h3>
+          <p class="text-ivory/70 text-sm font-light mt-2 reveal-up">HydraFacial, Dermalogica & anti-ageing facial treatments.</p>
+        </div>
+      </a>
+      <a href="#book" class="svc reveal group rounded-2xl block h-[420px]">
+        <img class="w-full h-full object-cover" alt="Spa & massage" src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=900&auto=format&fit=crop" data-fallback="grad"/>
+        <div class="veil absolute inset-0"></div>
+        <div class="absolute bottom-0 p-7">
+          <span class="eyebrow text-rose">04</span>
+          <h3 class="font-display text-3xl mt-2">Spa & Massage</h3>
+          <p class="text-ivory/70 text-sm font-light mt-2 reveal-up">Full-body massage & relaxation in a serene ladies-only space.</p>
+        </div>
+      </a>
+      <a href="#book" class="svc reveal d1 group rounded-2xl block h-[420px]">
+        <img class="w-full h-full object-cover" alt="Manicure & pedicure" src="https://images.unsplash.com/photo-1632345031435-8727f6897d53?q=80&w=900&auto=format&fit=crop" data-fallback="grad"/>
+        <div class="veil absolute inset-0"></div>
+        <div class="absolute bottom-0 p-7">
+          <span class="eyebrow text-rose">05</span>
+          <h3 class="font-display text-3xl mt-2">Mani, Pedi & Nail Art</h3>
+          <p class="text-ivory/70 text-sm font-light mt-2 reveal-up">Manicure, pedicure & bespoke nail art finishes.</p>
+        </div>
+      </a>
+      <a href="#book" class="svc reveal d2 group rounded-2xl block h-[420px]">
+        <img class="w-full h-full object-cover" alt="Waxing & grooming" src="https://images.unsplash.com/photo-1596178060810-72660ee8d12d?q=80&w=900&auto=format&fit=crop" data-fallback="grad"/>
+        <div class="veil absolute inset-0"></div>
+        <div class="absolute bottom-0 p-7">
+          <span class="eyebrow text-rose">06</span>
+          <h3 class="font-display text-3xl mt-2">Waxing & Grooming</h3>
+          <p class="text-ivory/70 text-sm font-light mt-2 reveal-up">Gentle waxing, threading & complete grooming services.</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ATMOSPHERE BAND ===================== -->
+<section class="relative h-[60vh] min-h-[420px] overflow-hidden flex items-center justify-center">
+  <img class="absolute inset-0 w-full h-full object-cover" id="atmoImg" alt="Moshaz salon atmosphere"
+       src="https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?q=80&w=1800&auto=format&fit=crop" data-fallback="grad"/>
+  <div class="absolute inset-0 bg-noir/70"></div>
+  <div class="relative text-center px-6 reveal">
+    <div class="divider mb-7"><span class="line"></span><span class="dot"></span><span class="line r"></span></div>
+    <p class="font-display italic font-light text-3xl sm:text-5xl leading-tight max-w-3xl mx-auto text-ivory">
+      “Beauty begins the moment you decide to be yourself — <span class="text-gold">we simply perfect it.</span>”
+    </p>
+    <p class="eyebrow text-ivory/45 mt-7">The Moshaz Philosophy · Since 2004</p>
+  </div>
+</section>
+
+<!-- ===================== BRIDAL BEFORE/AFTER ===================== -->
+<section id="bridal" class="relative bg-espresso py-24 lg:py-32 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 grid lg:grid-cols-2 gap-14 items-center">
+    <div class="reveal">
+      <p class="eyebrow text-rose mb-5">The Moshaz Transformation</p>
+      <h2 class="font-display font-light text-4xl sm:text-5xl lg:text-6xl leading-tight">
+        Your big day, <span class="italic text-gold">flawlessly</span> realised.
+      </h2>
+      <div class="divider my-7 justify-start"><span class="line"></span><span class="dot"></span></div>
+      <p class="text-ivory/65 font-light leading-relaxed">
+        Drag the slider to see the artistry. Our senior bridal team blends precision technique with a natural, radiant
+        finish that photographs beautifully and lasts from the first vow to the last dance.
+      </p>
+      <ul class="mt-8 space-y-4 text-sm">
+        <li class="flex items-center gap-4"><span class="w-2 h-2 rotate-45 bg-rose"></span>Personalised bridal consultation</li>
+        <li class="flex items-center gap-4"><span class="w-2 h-2 rotate-45 bg-rose"></span>Premium, long-wear products</li>
+        <li class="flex items-center gap-4"><span class="w-2 h-2 rotate-45 bg-rose"></span>Mehndi · Barat · Walima packages</li>
+      </ul>
+      <a href="#book" class="inline-flex btn-gold rounded-full px-8 py-4 text-[12px] uppercase mt-9">Reserve Your Bridal Date</a>
+    </div>
+
+    <div class="reveal d1">
+      <div id="ba" class="ba rounded-3xl shadow-2xl h-[520px] border border-rose/20">
+        <img alt="Before makeup" src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?q=80&w=900&auto=format&fit=crop" data-fallback="grad"/>
+        <div class="after" id="baAfter">
+          <img alt="After bridal makeup" src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?q=80&w=900&auto=format&fit=crop" data-fallback="grad"/>
+        </div>
+        <span class="tag left-4 glass text-ivory">BEFORE</span>
+        <span class="tag right-4 btn-gold !text-noir" id="baAfterTag">AFTER</span>
+        <div class="handle" id="baHandle">
+          <div class="knob">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E4C2AC" stroke-width="2"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg>
+          </div>
+        </div>
+      </div>
+      <p class="text-center eyebrow text-ivory/40 mt-4">Drag to reveal · real artistry, real results</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WHY CHOOSE ===================== -->
+<section class="relative bg-ivory text-noir py-24 lg:py-32">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="text-center max-w-2xl mx-auto reveal">
+      <p class="eyebrow text-rosedk mb-5">Why Moshaz</p>
+      <h2 class="font-display font-light text-4xl sm:text-5xl lg:text-6xl">The difference is in the <span class="italic text-rosedk">detail</span></h2>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
+      <div class="reveal group glass-light rounded-2xl p-8 hover:-translate-y-2 transition duration-500">
+        <div class="w-12 h-12 grid place-items-center rounded-full" style="background:var(--rose-grad)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16110E" stroke-width="1.6"><path d="M12 2l2.4 7.4H22l-6 4.4 2.3 7.4L12 17l-6.3 4.6L8 13.8 2 9.4h7.6z"/></svg>
+        </div>
+        <h3 class="font-display text-2xl mt-5">21+ Years of Expertise</h3>
+        <p class="text-noir/60 text-sm font-light mt-3">A trusted name since 2004, founded by internationally trained specialists.</p>
+      </div>
+      <div class="reveal d1 group glass-light rounded-2xl p-8 hover:-translate-y-2 transition duration-500">
+        <div class="w-12 h-12 grid place-items-center rounded-full" style="background:var(--rose-grad)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16110E" stroke-width="1.6"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13A4 4 0 0 1 16 11"/></svg>
+        </div>
+        <h3 class="font-display text-2xl mt-5">Expert Team</h3>
+        <p class="text-noir/60 text-sm font-light mt-3">Senior artists who work as one team for predictable, flawless results.</p>
+      </div>
+      <div class="reveal d2 group glass-light rounded-2xl p-8 hover:-translate-y-2 transition duration-500">
+        <div class="w-12 h-12 grid place-items-center rounded-full" style="background:var(--rose-grad)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16110E" stroke-width="1.6"><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        </div>
+        <h3 class="font-display text-2xl mt-5">Two Prime Locations</h3>
+        <p class="text-noir/60 text-sm font-light mt-3">Elegant studios in Chaklala Scheme 3 & Bahria Town Phase 4.</p>
+      </div>
+      <div class="reveal d3 group glass-light rounded-2xl p-8 hover:-translate-y-2 transition duration-500">
+        <div class="w-12 h-12 grid place-items-center rounded-full" style="background:var(--rose-grad)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16110E" stroke-width="1.6"><path d="M20 6L9 17l-5-5"/></svg>
+        </div>
+        <h3 class="font-display text-2xl mt-5">Ladies-Only Comfort</h3>
+        <p class="text-noir/60 text-sm font-light mt-3">A private, serene space designed exclusively for women.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TEAM ===================== -->
+<section class="relative bg-ivory text-noir pb-24 lg:pb-32 -mt-2">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="text-center max-w-2xl mx-auto reveal">
+      <p class="eyebrow text-rosedk mb-5">The Faces of Moshaz</p>
+      <h2 class="font-display font-light text-4xl sm:text-5xl lg:text-6xl">Meet the <span class="italic text-rosedk">artists</span></h2>
+      <p class="text-noir/60 font-light mt-5">A team trained across France, Singapore & Dubai — devoted to making every woman feel like the best version of herself.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-3 gap-6 mt-16">
+      <div class="reveal group text-center">
+        <div class="overflow-hidden rounded-t-[120px] rounded-b-2xl shadow-xl h-[420px]">
+          <img class="w-full h-full object-cover group-hover:scale-105 transition duration-700" alt="Founder & lead artist" src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?q=80&w=700&auto=format&fit=crop" data-fallback="grad"/>
+        </div>
+        <h3 class="font-display text-2xl mt-6">Shazia</h3>
+        <p class="eyebrow text-rosedk mt-1 text-[10px]">Co-Founder · Bridal Director</p>
+      </div>
+      <div class="reveal d1 group text-center sm:mt-10">
+        <div class="overflow-hidden rounded-t-[120px] rounded-b-2xl shadow-xl h-[420px]">
+          <img class="w-full h-full object-cover group-hover:scale-105 transition duration-700" alt="Founder & creative director" src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=700&auto=format&fit=crop" data-fallback="grad"/>
+        </div>
+        <h3 class="font-display text-2xl mt-6">Mona</h3>
+        <p class="eyebrow text-rosedk mt-1 text-[10px]">Co-Founder · Creative Director</p>
+      </div>
+      <div class="reveal d2 group text-center">
+        <div class="overflow-hidden rounded-t-[120px] rounded-b-2xl shadow-xl h-[420px]">
+          <img class="w-full h-full object-cover group-hover:scale-105 transition duration-700" alt="Senior stylist" src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=700&auto=format&fit=crop" data-fallback="grad"/>
+        </div>
+        <h3 class="font-display text-2xl mt-6">Senior Team</h3>
+        <p class="eyebrow text-rosedk mt-1 text-[10px]">Hair · Skin · Spa Specialists</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== GALLERY ===================== -->
+<section id="gallery" class="relative bg-noir py-24 lg:py-32">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="text-center max-w-2xl mx-auto reveal">
+      <p class="eyebrow text-rose mb-5">The Gallery</p>
+      <h2 class="font-display font-light text-4xl sm:text-5xl lg:text-6xl">Moments of <span class="italic text-gold">Moshaz</span></h2>
+    </div>
+
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-16 auto-rows-[220px]">
+      <div class="gitem reveal rounded-2xl row-span-2"><img alt="Bridal look" src="https://images.unsplash.com/photo-1583241800698-9c2e0c5d8b1e?q=80&w=800&auto=format&fit=crop" data-fallback="grad"/></div>
+      <div class="gitem reveal d1 rounded-2xl"><img alt="Makeup detail" src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=700&auto=format&fit=crop" data-fallback="grad"/></div>
+      <div class="gitem reveal d2 rounded-2xl"><img alt="Hair styling" src="https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=700&auto=format&fit=crop" data-fallback="grad"/></div>
+      <div class="gitem reveal d3 rounded-2xl row-span-2"><img alt="Skincare glow" src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?q=80&w=800&auto=format&fit=crop" data-fallback="grad"/></div>
+      <div class="gitem reveal d1 rounded-2xl"><img alt="Nail art" src="https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=700&auto=format&fit=crop" data-fallback="grad"/></div>
+      <div class="gitem reveal d2 rounded-2xl"><img alt="Spa relaxation" src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=700&auto=format&fit=crop" data-fallback="grad"/></div>
+      <div class="gitem reveal rounded-2xl"><img alt="Beauty portrait" src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=700&auto=format&fit=crop" data-fallback="grad"/></div>
+      <div class="gitem reveal d1 rounded-2xl"><img alt="Lashes & glam" src="https://images.unsplash.com/photo-1583001931096-959e9a1a6223?q=80&w=700&auto=format&fit=crop" data-fallback="grad"/></div>
+      <div class="gitem reveal d2 rounded-2xl"><img alt="Makeup application" src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?q=80&w=700&auto=format&fit=crop" data-fallback="grad"/></div>
+      <div class="gitem reveal d3 rounded-2xl"><img alt="Glamour portrait" src="https://images.unsplash.com/photo-1457972729786-0411a3b2b626?q=80&w=700&auto=format&fit=crop" data-fallback="grad"/></div>
+      <div class="gitem reveal rounded-2xl"><img alt="Bridal styling" src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?q=80&w=700&auto=format&fit=crop" data-fallback="grad"/></div>
+      <div class="gitem reveal d1 rounded-2xl"><img alt="Salon interior" src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?q=80&w=700&auto=format&fit=crop" data-fallback="grad"/></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TESTIMONIALS ===================== -->
+<section class="relative bg-espresso py-24 lg:py-32 overflow-hidden">
+  <div class="max-w-4xl mx-auto px-5 sm:px-8 text-center">
+    <p class="eyebrow text-rose mb-5 reveal">Our Clients Love Us</p>
+    <h2 class="font-display font-light text-4xl sm:text-5xl reveal d1">Words from <span class="italic text-gold">our women</span></h2>
+    <div class="divider my-10"><span class="line"></span><span class="dot"></span><span class="line r"></span></div>
+
+    <div id="quoteWrap" class="relative min-h-[230px] reveal d2">
+      <!-- quotes injected/cycled by JS -->
+      <div class="quote">
+        <p class="font-display italic text-2xl sm:text-3xl leading-relaxed text-ivory/90">“From the staff to their extraordinary expertise in makeup and hair, everything was absolutely perfect.”</p>
+        <p class="eyebrow text-rose mt-6">Aafia Atif</p><p class="text-ivory/40 text-xs mt-1">Bridal · Rawalpindi</p>
+      </div>
+    </div>
+
+    <div class="flex items-center justify-center gap-3 mt-8" id="quoteDots"></div>
+  </div>
+</section>
+
+<!-- ===================== SPECIAL OFFER ===================== -->
+<section class="relative py-24 lg:py-28 overflow-hidden">
+  <img class="absolute inset-0 w-full h-full object-cover" alt="" src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?q=80&w=1600&auto=format&fit=crop" data-fallback="grad"/>
+  <div class="absolute inset-0 bg-noir/80"></div>
+  <div class="relative max-w-3xl mx-auto px-5 sm:px-8 text-center reveal">
+    <p class="eyebrow text-rose mb-5">Limited Time</p>
+    <h2 class="font-display font-light text-4xl sm:text-6xl">The Signature <span class="italic text-gold">Bridal Edit</span></h2>
+    <p class="text-ivory/75 font-light mt-5 max-w-xl mx-auto">Book your bridal package this season and enjoy a complimentary pre-bridal HydraFacial — your radiance, prepared in advance.</p>
+    <div class="mt-9 inline-flex flex-col sm:flex-row items-center gap-4">
+      <a href="#book" class="btn-gold rounded-full px-10 py-4 text-[12px] uppercase">Claim This Offer</a>
+      <span class="eyebrow text-ivory/40">Mehndi · Barat · Walima</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== LOCATIONS ===================== -->
+<section id="locations" class="relative bg-ivory text-noir py-24 lg:py-32">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="text-center max-w-2xl mx-auto reveal">
+      <p class="eyebrow text-rosedk mb-5">Visit Us</p>
+      <h2 class="font-display font-light text-4xl sm:text-5xl lg:text-6xl">Two studios, one <span class="italic text-rosedk">standard</span></h2>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-6 mt-16">
+      <!-- Branch 1 -->
+      <div class="reveal group rounded-3xl overflow-hidden bg-white shadow-xl">
+        <div class="h-56 overflow-hidden">
+          <img class="w-full h-full object-cover group-hover:scale-105 transition duration-700" alt="Rawalpindi branch" src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?q=80&w=900&auto=format&fit=crop" data-fallback="grad"/>
+        </div>
+        <div class="p-8">
+          <p class="eyebrow text-rosedk">Branch One</p>
+          <h3 class="font-display text-3xl mt-2">Chaklala Scheme 3 · Rawalpindi</h3>
+          <p class="text-noir/60 text-sm font-light mt-3">House #170, Street 9, Chaklala Housing Scheme 3, Rawalpindi.</p>
+          <div class="rule-gold my-6"></div>
+          <div class="flex flex-wrap gap-x-8 gap-y-2 text-sm">
+            <span><span class="text-rosedk">Call · </span>+92 331 4555534</span>
+            <span><span class="text-rosedk">Tel · </span>051-8435359</span>
+          </div>
+          <p class="text-sm mt-2"><span class="text-rosedk">Open · </span>Mon–Sun · 10:30 AM – 8:30 PM</p>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Moshaz+Beauty+Salon+Chaklala+Scheme+3+Rawalpindi" class="inline-flex items-center gap-2 mt-6 text-rosedk text-sm tracking-[.12em] uppercase hover:gap-3 transition-all">Get Directions
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+      <!-- Branch 2 -->
+      <div class="reveal d1 group rounded-3xl overflow-hidden bg-white shadow-xl">
+        <div class="h-56 overflow-hidden">
+          <img class="w-full h-full object-cover group-hover:scale-105 transition duration-700" alt="Islamabad branch" src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?q=80&w=900&auto=format&fit=crop" data-fallback="grad"/>
+        </div>
+        <div class="p-8">
+          <p class="eyebrow text-rosedk">Branch Two</p>
+          <h3 class="font-display text-3xl mt-2">Bahria Town Phase 4 · Islamabad</h3>
+          <p class="text-noir/60 text-sm font-light mt-3">Al-Masoom Complex, Civic Center, Bahria Town, Islamabad.</p>
+          <div class="rule-gold my-6"></div>
+          <div class="flex flex-wrap gap-x-8 gap-y-2 text-sm">
+            <span><span class="text-rosedk">Call · </span>0320-5083620</span>
+            <span><span class="text-rosedk">Tel · </span>051-2724137</span>
+          </div>
+          <p class="text-sm mt-2"><span class="text-rosedk">Open · </span>Mon–Sun · 10:30 AM – 8:30 PM</p>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Moshaz+Beauty+Salon+Bahria+Town+Phase+4+Islamabad" class="inline-flex items-center gap-2 mt-6 text-rosedk text-sm tracking-[.12em] uppercase hover:gap-3 transition-all">Get Directions
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== BOOKING ===================== -->
+<section id="book" class="relative bg-noir py-24 lg:py-32 overflow-hidden">
+  <div class="absolute -top-32 -right-32 w-[460px] h-[460px] rounded-full blur-3xl opacity-20" style="background:var(--rose-grad)"></div>
+  <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-2 gap-14 items-center relative">
+    <div class="reveal">
+      <p class="eyebrow text-rose mb-5">Book an Appointment</p>
+      <h2 class="font-display font-light text-4xl sm:text-5xl lg:text-6xl leading-tight">Begin your <span class="italic text-gold">Moshaz moment</span></h2>
+      <p class="text-ivory/65 font-light mt-6 leading-relaxed max-w-md">Share a few details and our team will confirm your appointment by phone or WhatsApp. Brides, please book early — premium dates fill quickly.</p>
+      <div class="flex items-center gap-4 mt-10">
+        <div class="w-12 h-12 grid place-items-center rounded-full glass">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E4C2AC" stroke-width="1.6"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <div>
+          <p class="eyebrow text-ivory/40 text-[9px]">Prefer to call?</p>
+          <p class="font-display text-2xl text-ivory">+92 331 4555534</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal d1 glass rounded-3xl p-8 sm:p-10">
+      <form id="bookForm" class="space-y-5" novalidate>
+        <div>
+          <label class="eyebrow text-ivory/50 text-[10px]">Full Name</label>
+          <input required name="name" type="text" placeholder="Your name"
+            class="w-full mt-2 bg-transparent border-b border-rose/30 py-3 text-ivory placeholder-ivory/30 focus:border-rose outline-none transition" />
+        </div>
+        <div class="grid sm:grid-cols-2 gap-5">
+          <div>
+            <label class="eyebrow text-ivory/50 text-[10px]">Phone</label>
+            <input required name="phone" type="tel" placeholder="03xx xxxxxxx"
+              class="w-full mt-2 bg-transparent border-b border-rose/30 py-3 text-ivory placeholder-ivory/30 focus:border-rose outline-none transition" />
+          </div>
+          <div>
+            <label class="eyebrow text-ivory/50 text-[10px]">Branch</label>
+            <select name="branch" class="w-full mt-2 bg-transparent border-b border-rose/30 py-3 text-ivory focus:border-rose outline-none transition [&>option]:text-noir">
+              <option>Chaklala Scheme 3, Rawalpindi</option>
+              <option>Bahria Town Phase 4, Islamabad</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label class="eyebrow text-ivory/50 text-[10px]">Service</label>
+          <select name="service" class="w-full mt-2 bg-transparent border-b border-rose/30 py-3 text-ivory focus:border-rose outline-none transition [&>option]:text-noir">
+            <option>Bridal / Party Makeup</option>
+            <option>Hair Styling & Keratin</option>
+            <option>HydraFacial & Skincare</option>
+            <option>Spa & Massage</option>
+            <option>Mani, Pedi & Nail Art</option>
+            <option>Waxing & Grooming</option>
+          </select>
+        </div>
+        <div>
+          <label class="eyebrow text-ivory/50 text-[10px]">Message <span class="normal-case tracking-normal">(optional)</span></label>
+          <textarea name="message" rows="3" placeholder="Preferred date, occasion, anything else…"
+            class="w-full mt-2 bg-transparent border-b border-rose/30 py-3 text-ivory placeholder-ivory/30 focus:border-rose outline-none transition resize-none"></textarea>
+        </div>
+        <button type="submit" class="btn-gold w-full rounded-full py-4 text-[12px] uppercase">Request Appointment</button>
+        <p id="formMsg" class="text-center text-sm text-rose hidden">Thank you — we’ll confirm your appointment shortly.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== INSTAGRAM STRIP ===================== -->
+<section class="relative bg-noir pt-4 pb-2">
+  <div class="text-center reveal pb-8">
+    <p class="eyebrow text-rose mb-3">Follow the glow</p>
+    <a href="https://www.instagram.com/moshazsalonofficial/" target="_blank" rel="noopener" class="font-display text-3xl sm:text-4xl hover:text-gold transition">@moshazsalonofficial</a>
+  </div>
+  <div class="grid grid-cols-3 sm:grid-cols-6 gap-1.5">
+    <a href="https://www.instagram.com/moshazsalonofficial/" target="_blank" rel="noopener" class="gitem aspect-square block"><img alt="Instagram post" src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=500&auto=format&fit=crop" data-fallback="grad"/></a>
+    <a href="https://www.instagram.com/moshazsalonofficial/" target="_blank" rel="noopener" class="gitem aspect-square block"><img alt="Instagram post" src="https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=500&auto=format&fit=crop" data-fallback="grad"/></a>
+    <a href="https://www.instagram.com/moshazsalonofficial/" target="_blank" rel="noopener" class="gitem aspect-square block"><img alt="Instagram post" src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?q=80&w=500&auto=format&fit=crop" data-fallback="grad"/></a>
+    <a href="https://www.instagram.com/moshazsalonofficial/" target="_blank" rel="noopener" class="gitem aspect-square block"><img alt="Instagram post" src="https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=500&auto=format&fit=crop" data-fallback="grad"/></a>
+    <a href="https://www.instagram.com/moshazsalonofficial/" target="_blank" rel="noopener" class="gitem aspect-square block"><img alt="Instagram post" src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=500&auto=format&fit=crop" data-fallback="grad"/></a>
+    <a href="https://www.instagram.com/moshazsalonofficial/" target="_blank" rel="noopener" class="gitem aspect-square block"><img alt="Instagram post" src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=500&auto=format&fit=crop" data-fallback="grad"/></a>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="relative bg-espresso pt-20 pb-10 border-t border-rose/15">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="grid md:grid-cols-12 gap-10">
+      <div class="md:col-span-4">
+        <span class="font-accent text-3xl tracking-[.3em]">MOSHAZ</span>
+        <p class="eyebrow text-rose mt-2 text-[10px]">Beauty · Est. 2004</p>
+        <p class="text-ivory/55 font-light text-sm mt-5 max-w-xs leading-relaxed">The premier ladies-only beauty house of Rawalpindi & Islamabad — bridal, hair, skin and spa, perfected over 21+ years.</p>
+        <div class="flex gap-3 mt-6">
+          <a href="https://www.facebook.com/Moshazsalonofficial" target="_blank" rel="noopener" class="w-10 h-10 grid place-items-center rounded-full glass hover:bg-rose/20 transition" aria-label="Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#E4C2AC"><path d="M22 12a10 10 0 10-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0022 12z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/moshazsalonofficial/" target="_blank" rel="noopener" class="w-10 h-10 grid place-items-center rounded-full glass hover:bg-rose/20 transition" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E4C2AC" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#E4C2AC" stroke="none"/></svg>
+          </a>
+          <a href="https://www.youtube.com/channel/UC-8wXUIv-hlDyWvwQayBbNw" target="_blank" rel="noopener" class="w-10 h-10 grid place-items-center rounded-full glass hover:bg-rose/20 transition" aria-label="YouTube">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#E4C2AC"><path d="M23 12s0-3.5-.45-5.18a2.78 2.78 0 00-1.95-1.96C18.88 4.4 12 4.4 12 4.4s-6.88 0-8.6.46A2.78 2.78 0 001.45 6.82C1 8.5 1 12 1 12s0 3.5.45 5.18a2.78 2.78 0 001.95 1.96C5.12 19.6 12 19.6 12 19.6s6.88 0 8.6-.46a2.78 2.78 0 001.95-1.96C23 15.5 23 12 23 12zM9.75 15.5v-7l6 3.5z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="md:col-span-2">
+        <p class="eyebrow text-ivory/40 mb-5">Explore</p>
+        <ul class="space-y-3 text-sm text-ivory/65 font-light">
+          <li><a href="#about" class="hover:text-rose transition">About</a></li>
+          <li><a href="#services" class="hover:text-rose transition">Services</a></li>
+          <li><a href="#bridal" class="hover:text-rose transition">Bridal</a></li>
+          <li><a href="#gallery" class="hover:text-rose transition">Gallery</a></li>
+        </ul>
+      </div>
+      <div class="md:col-span-2">
+        <p class="eyebrow text-ivory/40 mb-5">Services</p>
+        <ul class="space-y-3 text-sm text-ivory/65 font-light">
+          <li><a href="#services" class="hover:text-rose transition">Makeup</a></li>
+          <li><a href="#services" class="hover:text-rose transition">Hair & Keratin</a></li>
+          <li><a href="#services" class="hover:text-rose transition">HydraFacial</a></li>
+          <li><a href="#services" class="hover:text-rose transition">Spa & Nails</a></li>
+        </ul>
+      </div>
+      <div class="md:col-span-4">
+        <p class="eyebrow text-ivory/40 mb-5">Get in Touch</p>
+        <p class="text-sm text-ivory/65 font-light leading-relaxed">Chaklala Scheme 3, Rawalpindi<br>Bahria Town Phase 4, Islamabad</p>
+        <p class="text-sm text-ivory/65 font-light mt-4">+92 331 4555534 · 051-8435359<br>0320-5083620 · 051-2724137</p>
+        <p class="text-sm text-rose mt-4">Mon–Sun · 10:30 AM – 8:30 PM</p>
+      </div>
+    </div>
+
+    <div class="rule-gold mt-14 mb-6"></div>
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-3 text-ivory/40 text-xs">
+      <p>© 2026 Moshaz Beauty Salon. All rights reserved.</p>
+      <p class="eyebrow text-[9px]">Crafted with elegance · Rawalpindi & Islamabad</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating actions -->
+<a href="https://wa.me/923314555534" target="_blank" rel="noopener" aria-label="WhatsApp"
+   class="fixed bottom-6 left-6 z-40 w-14 h-14 grid place-items-center rounded-full shadow-2xl transition hover:scale-110" style="background:#25D366">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 00-8.6 15.05L2 22l5.1-1.33A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.13l-.29-.17-3.03.79.81-2.95-.19-.3A8 8 0 1112 20zm4.5-5.9c-.25-.12-1.47-.72-1.7-.8s-.39-.12-.56.13-.64.8-.79.97-.29.18-.54.06a6.5 6.5 0 01-1.92-1.18 7.16 7.16 0 01-1.32-1.65c-.14-.24 0-.37.11-.49s.25-.29.37-.43.17-.25.25-.41a.45.45 0 00-.02-.43c-.06-.12-.56-1.35-.77-1.85s-.4-.42-.56-.43h-.48a.92.92 0 00-.67.31 2.8 2.8 0 00-.87 2.08 4.86 4.86 0 001.02 2.58 11.14 11.14 0 004.27 3.78c.6.26 1.06.41 1.42.53.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18s.21-1.08.15-1.18-.23-.18-.48-.3z"/></svg>
+</a>
+<button id="toTop" aria-label="Back to top"
+   class="fixed bottom-6 right-6 z-40 w-12 h-12 grid place-items-center rounded-full glass text-ivory opacity-0 translate-y-4 pointer-events-none transition-all duration-500 hover:bg-rose/20">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E4C2AC" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script>
+/* ---------- Image polish: shimmer placeholder, fade-in, graceful fallback ---------- */
+(function(){
+  const grads=['linear-gradient(135deg,#E7C7AE,#A06B52)','linear-gradient(135deg,#C08C72,#241A14)','linear-gradient(135deg,#E9D5C0,#C08C72)','linear-gradient(135deg,#D9AE94,#16110E)'];
+  document.querySelectorAll('img[data-fallback]').forEach((img,i)=>{
+    const p=img.parentElement;
+    if(p.children.length===1) p.classList.add('ph');
+    img.setAttribute('loading','lazy');
+    const done=()=>p.classList.add('ready');
+    img.addEventListener('load',()=>{img.classList.add('loaded');done();});
+    img.addEventListener('error',()=>{
+      img.style.display='none';
+      p.style.background=grads[i%grads.length];
+      p.style.backgroundSize='cover';
+      done();
+    });
+    if(img.complete && img.naturalWidth>0){img.classList.add('loaded');done();}
+  });
+})();
+
+/* ---------- Nav scroll state ---------- */
+const nav=document.getElementById('nav'), navInner=document.getElementById('navInner');
+function navScroll(){
+  if(window.scrollY>40){nav.classList.add('glass');navInner.classList.replace('py-5','py-3');}
+  else{nav.classList.remove('glass');navInner.classList.replace('py-3','py-5');}
+}
+window.addEventListener('scroll',navScroll); navScroll();
+
+/* ---------- Mobile menu ---------- */
+const mm=document.getElementById('mobileMenu');
+document.getElementById('burger').onclick=()=>mm.classList.remove('translate-x-full');
+document.getElementById('closeMenu').onclick=()=>mm.classList.add('translate-x-full');
+document.querySelectorAll('.moblink').forEach(a=>a.onclick=()=>mm.classList.add('translate-x-full'));
+
+/* ---------- Reveal on scroll ---------- */
+const io=new IntersectionObserver((es)=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+},{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ---------- Animated counters ---------- */
+const cio=new IntersectionObserver((es)=>{
+  es.forEach(e=>{
+    if(!e.isIntersecting) return;
+    const el=e.target, to=+el.dataset.to; let cur=0;
+    const dur=1600, t0=performance.now();
+    function step(t){
+      const p=Math.min((t-t0)/dur,1);
+      const val=Math.floor((1-Math.pow(1-p,3))*to);
+      el.textContent = to>=1000 ? val.toLocaleString() : val;
+      if(p<1) requestAnimationFrame(step); else el.textContent = to>=1000 ? to.toLocaleString() : to;
+    }
+    requestAnimationFrame(step); cio.unobserve(el);
+  });
+},{threshold:.6});
+document.querySelectorAll('.count').forEach(el=>cio.observe(el));
+
+/* ---------- Hero + atmosphere parallax ---------- */
+const heroBg=document.querySelector('.hero-bg');
+const atmoImg=document.getElementById('atmoImg');
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY;
+  if(y<window.innerHeight && heroBg) heroBg.style.transform=`translateY(${y*0.25}px) scale(1.08)`;
+  if(atmoImg){
+    const r=atmoImg.getBoundingClientRect();
+    if(r.top<window.innerHeight && r.bottom>0){
+      const off=(window.innerHeight-r.top)*0.08;
+      atmoImg.style.transform=`translateY(${-off}px) scale(1.15)`;
+    }
+  }
+},{passive:true});
+
+/* ---------- Before / After slider ---------- */
+(function(){
+  const ba=document.getElementById('ba'); if(!ba) return;
+  const after=document.getElementById('baAfter'), handle=document.getElementById('baHandle'),
+        afterImg=after.querySelector('img'), tag=document.getElementById('baAfterTag');
+  function setW(){afterImg.style.width=ba.clientWidth+'px';}
+  function move(x){
+    const r=ba.getBoundingClientRect();
+    let p=(x-r.left)/r.width; p=Math.max(0,Math.min(1,p));
+    after.style.width=(p*100)+'%'; handle.style.left=(p*100)+'%';
+    tag.style.opacity = p<0.18 ? 0 : 1;
+  }
+  let drag=false;
+  const start=()=>drag=true, end=()=>drag=false;
+  ba.addEventListener('mousedown',e=>{drag=true;move(e.clientX);});
+  window.addEventListener('mousemove',e=>{if(drag)move(e.clientX);});
+  window.addEventListener('mouseup',end);
+  ba.addEventListener('touchstart',e=>{drag=true;move(e.touches[0].clientX);},{passive:true});
+  ba.addEventListener('touchmove',e=>{if(drag)move(e.touches[0].clientX);},{passive:true});
+  window.addEventListener('touchend',end);
+  window.addEventListener('resize',setW); setW();
+})();
+
+/* ---------- Testimonials carousel ---------- */
+(function(){
+  const data=[
+    {t:"From the staff to their extraordinary expertise in makeup and hair, everything was absolutely perfect.",n:"Aafia Atif",s:"Bridal · Rawalpindi"},
+    {t:"I’d definitely recommend Moshaz for their hair services — professional, caring, and I get compliments from strangers.",n:"Maryam Hanif",s:"Hair · Rawalpindi"},
+    {t:"The makeup artist kept it natural with a beautiful dewy look. The whole team was respectful and helpful. I totally recommend it for your big day.",n:"Faiza Naqash",s:"Walima · Rawalpindi"},
+    {t:"Extremely satisfied with my keratin treatment. The team knows their products and tailors everything to you.",n:"Beenish Shahid",s:"Keratin · Rawalpindi"},
+    {t:"The best salon massage, done perfectly. Completely satisfied after my mani-pedi too.",n:"Batool Zahra",s:"Spa · Rawalpindi"},
+    {t:"After my bridal makeup by Moshaz, I can say it’s the top-rated salon in Rawalpindi. Thank you for my special day.",n:"Binte Ali",s:"Bridal · Islamabad"},
+  ];
+  const wrap=document.getElementById('quoteWrap'), dots=document.getElementById('quoteDots');
+  let i=0, timer;
+  data.forEach((_,idx)=>{
+    const d=document.createElement('button');
+    d.className='h-2 w-2 rotate-45 transition-all duration-300';
+    d.style.background= idx===0?'#C08C72':'rgba(228,194,172,.25)';
+    d.onclick=()=>{show(idx);reset();};
+    dots.appendChild(d);
+  });
+  function show(n){
+    i=n;
+    wrap.innerHTML=`<div class="quote">
+      <p class="font-display italic text-2xl sm:text-3xl leading-relaxed text-ivory/90">“${data[n].t}”</p>
+      <p class="eyebrow text-rose mt-6">${data[n].n}</p>
+      <p class="text-ivory/40 text-xs mt-1">${data[n].s}</p></div>`;
+    wrap.firstChild.animate([{opacity:0,transform:'translateY(14px)'},{opacity:1,transform:'none'}],{duration:600,easing:'ease'});
+    [...dots.children].forEach((d,k)=>d.style.background=k===n?'#C08C72':'rgba(228,194,172,.25)');
+  }
+  function next(){show((i+1)%data.length);}
+  function reset(){clearInterval(timer);timer=setInterval(next,5500);}
+  show(0); reset();
+})();
+
+/* ---------- Back to top ---------- */
+const toTop=document.getElementById('toTop');
+window.addEventListener('scroll',()=>{
+  if(window.scrollY>600){toTop.classList.remove('opacity-0','translate-y-4','pointer-events-none');}
+  else{toTop.classList.add('opacity-0','translate-y-4','pointer-events-none');}
+});
+toTop.onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
+
+/* ---------- Booking form ---------- */
+document.getElementById('bookForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const f=e.target, msg=document.getElementById('formMsg');
+  if(!f.name.value.trim()||!f.phone.value.trim()){
+    [f.name,f.phone].forEach(el=>{if(!el.value.trim())el.style.borderColor='#C08C72';});
+    return;
+  }
+  msg.classList.remove('hidden'); f.reset();
+  setTimeout(()=>msg.classList.add('hidden'),5000);
+});
+</script>
+</body>
+</html>
