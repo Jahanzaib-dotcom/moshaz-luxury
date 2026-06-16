@@ -214,19 +214,22 @@
     <img class="hero-bg hero-anim w-full h-full object-cover" alt="Moshaz bridal beauty"
          src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?q=80&w=2000&auto=format&fit=crop"
          data-fallback="grad" />
-    <!-- Strong left-side overlay to keep text readable over any image -->
-    <div class="absolute inset-0" style="background: linear-gradient(to right, rgba(22,17,14,0.92) 0%, rgba(22,17,14,0.82) 30%, rgba(22,17,14,0.55) 55%, rgba(22,17,14,0.15) 80%, rgba(22,17,14,0.05) 100%);"></div>
-    <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(22,17,14,0.85) 0%, rgba(22,17,14,0.2) 30%, rgba(22,17,14,0.35) 100%);"></div>
+    <!-- Layer 1: base dark wash over entire image -->
+    <div class="absolute inset-0" style="background: rgba(22,17,14,0.45);"></div>
+    <!-- Layer 2: heavy left-side gradient so text is always readable -->
+    <div class="absolute inset-0" style="background: linear-gradient(to right, rgba(22,17,14,0.95) 0%, rgba(22,17,14,0.90) 25%, rgba(22,17,14,0.70) 45%, rgba(22,17,14,0.30) 65%, rgba(22,17,14,0.0) 100%);"></div>
+    <!-- Layer 3: bottom-top vignette -->
+    <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(22,17,14,0.90) 0%, rgba(22,17,14,0.10) 35%, rgba(22,17,14,0.30) 100%);"></div>
   </div>
 
   <div class="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 w-full pt-28">
     <div class="max-w-3xl">
-      <p class="eyebrow text-rose mb-6 line-mask"><span style="animation-delay:.1s">Premium Beauty Salon · Rawalpindi & Islamabad</span></p>
-      <h1 class="font-display font-light text-[3.1rem] leading-[1.02] sm:text-7xl lg:text-8xl text-ivory">
+      <p class="eyebrow text-rose mb-6 line-mask" style="text-shadow:0 1px 8px rgba(0,0,0,0.8);"><span style="animation-delay:.1s">Premium Beauty Salon · Rawalpindi & Islamabad</span></p>
+      <h1 class="font-display font-light text-[3.1rem] leading-[1.02] sm:text-7xl lg:text-8xl text-ivory" style="text-shadow:0 2px 20px rgba(0,0,0,0.7),0 4px 40px rgba(0,0,0,0.5);">
         <span class="line-mask"><span style="animation-delay:.35s">Where Beauty</span></span>
         <span class="line-mask"><span class="text-gold italic" style="animation-delay:.6s">Meets Perfection</span></span>
       </h1>
-      <p class="mt-7 max-w-xl text-ivory/75 text-base sm:text-lg font-light leading-relaxed line-mask">
+      <p class="mt-7 max-w-xl text-ivory/75 text-base sm:text-lg font-light leading-relaxed line-mask" style="text-shadow:0 1px 10px rgba(0,0,0,0.8);">
         <span style="animation-delay:.9s">Premium bridal makeup, hair styling, spa & beauty services — crafted by internationally trained artists for over two decades.</span>
       </p>
       <div class="mt-10 flex flex-wrap gap-4 line-mask">
